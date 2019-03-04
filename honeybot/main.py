@@ -38,6 +38,7 @@ class Bot_core(object):
         self.domain = '.'.join(dom[-2:])
         self.sp_command = 'hbot'
         self.plugins = []
+        print "All the values are initialized in the class Bot_core()"
 
     '''
     STRINGS
@@ -155,6 +156,7 @@ class Bot_core(object):
     '''
     def connect(self):
             self.irc.connect((self.server_url, self.port))
+            print "successfully connected IRC Net"
 
     def identify(self):
         self.send(self.identify_command())
@@ -187,7 +189,9 @@ class Bot_core(object):
 
     # all in one for registered bot
     def registered_run(self):
+        print "Calling connect() function from registered_run() func"
         self.connect()
+        print "Calling identity() function from registered_run() func"
         self.identify()
         self.greet()
         self.load_plugins(self.plugins)
@@ -216,5 +220,6 @@ class Bot_core(object):
                 self.irc.recv(2048).decode("UTF-8")
 
 if __name__ == '__main__':
+    print "Calling Bot_core() class from main() func"
     x = Bot_core()
     x.registered_run()
